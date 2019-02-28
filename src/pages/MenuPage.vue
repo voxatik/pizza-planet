@@ -63,16 +63,16 @@
 </template>
 
 <script>
-import { menuColRef } from '@/firebase'
+import { mapActions, mapState } from 'vuex'
 
 export default {
     data() {
         return {
-            menu: {},
             basket: {}
         }
     },
     methods: {
+        ...mapActions('menu', ['getMenu', 'placeOrder']),
         addItem(item, option) {
             let itemName = `${item.name} ${option.size}`
             if((! this.basket[itemName])) {
@@ -99,22 +99,10 @@ export default {
             }
             this.basket[key].quantity--
             this.basket[key].total -= this.basket[key].price
-        },
-        placeOrder() {
-            //todo store order in firebase db
-        },
-        async getMenu() {
-            try {
-                let snapshot = await menuColRef.get()
-                snapshot.forEach((doc) => {
-                    this.$set(this.menu, doc.id, doc.data())
-                })
-            } catch(error) {
-
-            }
         }
     },
     computed: {
+        ...mapState('menu', {menu: 'items'}),
         orderTotal() {
             if(this.basket === {}) return
 

@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import { FIREBASE_API_KEY } from '@/env'
+import { FIREBASE_API_KEY } from '../../env'
 
 // Initialize Firebase
 var config = {
