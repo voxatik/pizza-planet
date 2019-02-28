@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { menuColRef } from '../../Firebase'
+import { menuColRef } from '@/firebase'
 export default {
     name: "NewPizzaPage",
     data() {
