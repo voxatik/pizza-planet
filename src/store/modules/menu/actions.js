@@ -13,13 +13,13 @@ const actions = {
           //todo display notification error
         }
     },
-
-    async placeOrder({ commit }) {
-        //todo store order in firebase db
+    async addToMenu({ commit, state }) {
         try {
-            //todo
-        } catch(error) {
-            //todo
+            await menuColRef.add(state.itemForm)
+            //notify user item added to menu
+            commit('clearItemForm')
+        } catch (error) {
+            //todo notify user of error
         }
     }
 }

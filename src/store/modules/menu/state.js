@@ -1,5 +1,13 @@
 const state = {
-    items: {}
+    items: {},
+    itemForm: {
+        name: "",
+        description: "",
+        options: [
+            {size: null, price: null},
+            {size: null, price: null}
+        ]
+    }
 }
 
 
