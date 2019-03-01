@@ -1,14 +1,10 @@
-import firebase from 'firebase'
-import { FIREBASE_API_KEY } from '../../env'
+import firebase from 'firebase/app'
+import 'firebase/firebase-firestore'
+import { firebaseConfig } from '../../env'
 
 // Initialize Firebase
 var config = {
-    apiKey: FIREBASE_API_KEY,
-    authDomain: 'pizza-planet-4c599.firebaseapp.com',
-    databaseURL: 'https://pizza-planet-4c599.firebaseio.com',
-    projectId: 'pizza-planet-4c599',
-    storageBucket: 'pizza-planet-4c599.appspot.com',
-    messagingSenderId: '239602075628'
+    ...firebaseConfig
 };
 
 
