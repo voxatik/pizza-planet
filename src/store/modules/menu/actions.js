@@ -1,24 +1,11 @@
 import { menuColRef } from '@/firebase'
+import { firebaseAction } from 'vuexfire';
 
 const actions = {
-  async getMenu({ commit }) {
-    let menu = {}
-
-    const next = (snapshot) => {
-        snapshot.forEach((doc) => {
-            menu[doc.id] = doc.data()
-        })
-        commit('setMenuItems', menu)
-        menu = {}
-    }
-
-    const err = (error) => {
-        console.log(error)
-    }
-
-
-    menuColRef.onSnapshot(next, err)
-  },
+  getMenu: firebaseAction(async ({ bindFirebaseRef }) => {
+    bindFirebaseRef('items', menuColRef)
+  }),
+  
   async addToMenu({ commit, state }) {
     try {
         await menuColRef.add(state.itemForm)

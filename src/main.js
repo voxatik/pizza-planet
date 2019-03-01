@@ -4,6 +4,7 @@ import App from './App.vue'
 
 Vue.use(ViewRouter)
 
+
 import router from './router'
 import store from './store'
 
