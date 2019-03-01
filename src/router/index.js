@@ -1,8 +1,8 @@
-import VueRouter from 'vue-router';
+import VueRouter from 'vue-router'
 import routes from './routes'
 
 export default new VueRouter({
-    routes,
-    linkExactActiveClass: 'active'
+  routes,
+  linkExactActiveClass: 'active'
 })
 
