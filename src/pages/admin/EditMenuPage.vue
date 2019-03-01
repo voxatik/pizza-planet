@@ -50,16 +50,10 @@
 import { mapState } from 'vuex'
 
 export default {
-
+    name: 'EditMenuPage',
     computed: {
         ...mapState('menu', ['items'])
-    },
-    mounted() {
-        if(! this.items.length) {
-            this.$store.dispatch('menu/getMenu')
-        }
     }
-
 }
 </script>
 

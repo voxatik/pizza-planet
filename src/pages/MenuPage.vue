@@ -72,7 +72,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('menu', ['getMenu', 'placeOrder']),
+        ...mapActions('menu', ['placeOrder']),
         addItem(item, option) {
             let itemName = `${item.name} ${option.size}`
             if((! this.basket[itemName])) {
@@ -112,9 +112,6 @@ export default {
                 }, 0)
                 .toFixed(2)
         }
-    },
-    created() {
-        this.getMenu()
     }
 }
 </script>
