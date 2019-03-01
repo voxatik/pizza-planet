@@ -1,7 +1,9 @@
 <template>
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <h3>New Pizza</h3><br>
+            <h3>New Pizza</h3>
+        </div>
+        <div class="col-md-8 offset-md-2 mt-2">
             <div class="form-group row">
                 <div class="col-md-3 col-form-label">
                     <label for="">Name</label>
