@@ -12,10 +12,7 @@
             class="nav-item nav-link btn btn-primary mb-2"
             to="/admin/new-pizza"
           >New Pizza</router-link>
-          <router-link 
-            class="nav-item nav-link btn btn-primary" 
-            to="/admin/edit-menu"
-          >Edit Menu</router-link>
+          <router-link class="nav-item nav-link btn btn-primary" to="/admin/edit-menu">Edit Menu</router-link>
         </div>
       </nav>
     </div>
@@ -30,9 +27,16 @@
 <script>
 export default {
   created() {
-    this.$store.dispatch('orders/getOrders')
+    this.$store.dispatch("orders/getOrders");
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if(! vm.$store.state.auth.isLoggedIn) {
+        return vm.$router.push({name: 'login', params: {as: 'admin', }})
+      }
+    })
   }
-};
+}
 </script>
 
 <style>

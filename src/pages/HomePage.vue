@@ -4,7 +4,7 @@
       <div class="banner-text text-center">
         <h1 class="">Welcome to Pizza Planet</h1>
         <h3 class="mb-4">Feeling Hungry?</h3>
-        <a href="#" class="btn btn-primary">Order Now!</a>
+        <router-link to="/menu" class="btn btn-primary">Order Now!</router-link>
       </div>
     </div>
   </main>

@@ -1,16 +1,17 @@
 import firebase from 'firebase/app'
 import 'firebase/firebase-firestore'
-import { firebaseConfig } from '../../env'
+import 'firebase/firebase-auth'
+
+import { firebaseConfig } from '@/../env'
 
 // Initialize Firebase
-var config = {
-    ...firebaseConfig
-};
+firebase.initializeApp({...firebaseConfig })
 
-
-firebase.initializeApp(config);
-
+//make exportable references to firebase
+//services
 export const db = firebase.firestore()
+export const auth = firebase.auth()
 
+//firestore collection references
 export const menuColRef = db.collection("menu")
 export const ordersColRef = db.collection("orders")

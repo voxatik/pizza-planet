@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState } from "vuex"
 
 export default {
   data() {
@@ -82,7 +82,7 @@ export default {
   methods: {
     ...mapActions("menu", ["placeOrder"]),
     addItem(item, option) {
-      let itemName = `${item.name} ${option.size}`;
+      let itemName = `${item.name} ${option.size}`
       if (!this.basket[itemName]) {
         this.$set(this.basket, itemName, {
           quantity: 1,
@@ -97,16 +97,16 @@ export default {
       }
     },
     increment(key) {
-      this.basket[key].quantity++;
-      this.basket[key].total += this.basket[key].price;
+      this.basket[key].quantity++
+      this.basket[key].total += this.basket[key].price
     },
     decrement(key) {
       if (this.basket[key].quantity === 1) {
-        this.$delete(this.basket, key);
+        this.$delete(this.basket, key)
         return;
       }
-      this.basket[key].quantity--;
-      this.basket[key].total -= this.basket[key].price;
+      this.basket[key].quantity--
+      this.basket[key].total -= this.basket[key].price
     }
   },
   computed: {
@@ -116,12 +116,12 @@ export default {
 
       return Object.entries(this.basket)
         .reduce((total, value) => {
-          return total + value[1].total;
+          return total + value[1].total
         }, 0)
-        .toFixed(2);
+        .toFixed(2)
     }
   }
-};
+}
 </script>
 
 <style>
