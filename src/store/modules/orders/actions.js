@@ -8,9 +8,10 @@ const actions = {
       snapshot.forEach((doc) => {
         orders.push({id: doc.id,...doc.data()})
       })
+      
       commit('setOrders', orders)
     }
-    ordersColRef.onSnapshot(processOrders)  
+    ordersColRef.orderBy('createdAt').onSnapshot(processOrders)  
   },
   async placeOrder({ rootState }, order) {
     try {
