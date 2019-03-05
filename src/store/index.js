@@ -2,10 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { firebaseMutations } from 'vuexfire';
 
-import menu from './modules/menu'
-import orders from './modules/orders'
-import users from './modules/users'
 import auth from './modules/auth'
+import menu from './modules/menu'
+import users from './modules/users'
+import orders from './modules/orders'
 
 Vue.use(Vuex)
 

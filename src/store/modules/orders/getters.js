@@ -1,5 +1,10 @@
 const getters = {
-  ordersCount: state => state.orders.length
+  ordersCount: state => { 
+    return state.orders.length 
+  },
+  getOrders: state => {
+    return state.orders
+  }
 }
 
 

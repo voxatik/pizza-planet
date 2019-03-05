@@ -1,5 +1,5 @@
 const state = {
-  orders: {}
+  orders: []
 }
 
 

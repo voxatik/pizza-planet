@@ -45,17 +45,22 @@
               >+</button>
             </td>
             <td>{{item.item}}"</td>
-            <td>{{item.total.toFixed(2)}}</td>
+            <td>{{total(item).toFixed(2)}}</td>
           </tr>
         </tbody>
-        <tfoot v-if="orderTotal > 0" class="tfood-dark">
+        <tbody v-if="orderPlaced">
+          <tr>
+            <td colspan="3">{{ orderStatus }}</td>
+          </tr>
+        </tbody>
+        <tfoot v-if="orderTotal > 0" class="tfoot-dark">
           <tr>
             <td></td>
             <td>
               <strong>Order Total:</strong>
             </td>
             <td>
-              <strong>{{orderTotal}}</strong>
+              <strong>{{orderTotal.toFixed(2)}}</strong>
             </td>
           </tr>
         </tfoot>
@@ -64,7 +69,7 @@
         v-if="orderTotal > 0"
         type="button"
         class="btn btn-primary btn-block"
-        @click="placeOrder"
+        @click="createOrder"
       >Place Order</button>
     </div>
   </div>
@@ -74,13 +79,16 @@
 import { mapActions, mapState } from "vuex"
 
 export default {
+  name: 'MenuPage',
   data() {
     return {
-      basket: {}
+      basket: {},
+      orderStatus: null,
+      orderPlaced: false
     };
   },
   methods: {
-    ...mapActions("menu", ["placeOrder"]),
+    ...mapActions("orders", ["placeOrder"]),
     addItem(item, option) {
       let itemName = `${item.name} ${option.size}`
       if (!this.basket[itemName]) {
@@ -89,16 +97,28 @@ export default {
           item: `${itemName}`,
           name: item.name,
           size: parseInt(option.size),
-          price: parseFloat(option.price),
-          total: parseFloat(option.price)
+          price: parseFloat(option.price)
         });
       } else {
         this.increment(itemName);
       }
     },
+    createOrder() {
+      this.placeOrder(this.basketToArray())
+      .then((id) => {
+        this.basket = {}
+        this.orderPlaced = true
+        this.orderStatus = `Thanks you for your order. We will get started on it soon. Please take note of your order number: ${id}`
+      })
+      .catch((e) => {
+       console.error(e)
+      })
+    },
+    basketToArray() {
+      return Object.entries(this.basket).map(value => value[1])
+    },
     increment(key) {
       this.basket[key].quantity++
-      this.basket[key].total += this.basket[key].price
     },
     decrement(key) {
       if (this.basket[key].quantity === 1) {
@@ -106,7 +126,9 @@ export default {
         return;
       }
       this.basket[key].quantity--
-      this.basket[key].total -= this.basket[key].price
+    },
+    total(item) {
+      return item.quantity * item.price
     }
   },
   computed: {
@@ -116,13 +138,9 @@ export default {
 
       return Object.entries(this.basket)
         .reduce((total, value) => {
-          return total + value[1].total
+          return total + (value[1].quantity * value[1].price)
         }, 0)
-        .toFixed(2)
     }
   }
 }
 </script>
-
-<style>
-</style>

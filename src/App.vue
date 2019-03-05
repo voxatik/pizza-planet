@@ -32,11 +32,6 @@ export default {
     }   
   },
   created() {
-    // document.addEventListener('readystatechange', () => {
-    //   if(document.readyState === 'complete'){
-    //     this.$store.commit('setLoading', false)
-    //   }
-    // })
     window.onload = () => this.$store.commit('setLoading', false)
     this.$store.dispatch('menu/getMenu')
     this.$store.dispatch('auth/initAuthStateChanged')

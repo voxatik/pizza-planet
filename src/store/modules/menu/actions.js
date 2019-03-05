@@ -3,8 +3,8 @@ import { firebaseAction } from 'vuexfire';
 
 const actions = {
   getMenu: firebaseAction(async ({ bindFirebaseRef }) => {
-    bindFirebaseRef('items', menuColRef).then((data1, data2) =>{
-      console.log(data1, data2)
+    bindFirebaseRef('items', menuColRef).then((data) =>{
+      
     })
   }),
   
