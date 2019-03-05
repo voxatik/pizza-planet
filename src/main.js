@@ -13,5 +13,10 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
   store,
-  router
+  router,
+  created() {
+    window.onload = () => this.$store.commit('setLoading', false)
+    this.$store.dispatch('auth/initAuthStateChanged')
+    this.$store.dispatch('menu/getMenu')
+  }
 }).$mount('#app')

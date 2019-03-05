@@ -78,7 +78,7 @@ export default {
         this.$router.push(location)
       })
       .catch((e) => {
-
+        window.alert(`code: ${e.code}\n message: ${e.message}`)
       })
     }
   },

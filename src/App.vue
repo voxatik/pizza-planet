@@ -30,11 +30,6 @@ export default {
     isLoading() {
        return this.$store.state.isLoading
     }   
-  },
-  created() {
-    window.onload = () => this.$store.commit('setLoading', false)
-    this.$store.dispatch('menu/getMenu')
-    this.$store.dispatch('auth/initAuthStateChanged')
   }
 }
 </script>

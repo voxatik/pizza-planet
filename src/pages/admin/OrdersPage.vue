@@ -18,7 +18,7 @@
           <tr v-for="(item, index) in getItems(order)" :key="index">
             <td></td>
             <td>{{item.quantity}}</td>
-            <td>{{item.item}}</td>
+            <td>{{item.item}}"</td>
             <td>New</td>
           </tr>
         </tbody>
@@ -55,6 +55,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

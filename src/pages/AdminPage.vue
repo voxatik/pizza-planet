@@ -25,16 +25,24 @@
 </template>
 
 <script>
+import store from '@/store'
 export default {
   created() {
     this.$store.dispatch("orders/fetchOrders");
   },
   beforeRouteEnter(to, from, next) {
-    next(vm => {
-      if(! vm.$store.state.auth.isLoggedIn) {
-        vm.$router.push({name: 'login', params: {as: 'admin', intended: 'admin' }})
-      }
-    })
+    if(store.state.isLoading) {
+      setTimeout(() => {
+        if(! store.state.auth.isLoggedIn) {
+          next({name: 'login', params: {as: 'admin', intended: 'admin' }})
+        } 
+        next()
+      }, 600)
+    } else if(! store.state.auth.isLoggedIn) {
+        next({name: 'login', params: {as: 'admin', intended: 'admin' }})
+    } else {
+      next()
+    }
   }
 }
 </script>
